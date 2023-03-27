@@ -34,11 +34,16 @@ struct ItemsStats{
     int defence{0};
     int cost{0};
 };
+struct ItemsLinked {
+    ItemsStats value;
+    ItemsLinked* next;
+};
 
 class ItemsList {
-private:
-    int amount;
 public:
+    int amount;
+    ItemsLinked* headPtr;
+    ItemsLinked* tailPtr;
     ItemsList();
     int getAmount();
     void addItem( ItemsStats* newItem);

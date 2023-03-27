@@ -3,9 +3,26 @@
 #include "spring.hpp"
 
 
-ItemsList::ItemsList(){pass;}
+ItemsList::ItemsList(){
+    ItemsLinked* headPtr = nullptr;
+    ItemsLinked* tailPtr = nullptr;
+}
+
 int ItemsList::getAmount() {return amount;}
-void ItemsList::addItem(ItemsStats* newItem){}
+
+void ItemsList::addItem(ItemsStats* newItem){
+    ItemsLinked* temp = new ItemsLinked;
+    temp->value = *newItem;
+    temp->next = nullptr;
+    if (headPtr == nullptr) {
+        headPtr = temp;
+        tailPtr = temp;
+    } else {
+        tailPtr->next = temp;
+        tailPtr = temp->next;
+    }
+    amount += 1;
+}
 
 Game::Game(std::string name): numPlayers(0), gameName(name) {
     std::cout << "New Game: " << gameName << std::endl;
