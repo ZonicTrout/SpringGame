@@ -27,12 +27,24 @@ struct Stats {
     int money{0};
 };
 
-class Game {
-    int numPlayers;
-    std::string gameName;
-public:
-    Game(std::string name = "Game 1");
+struct ItemsStats{
+    std::string name;
+    std::string description;
+    int attack{0};
+    int defence{0};
+    int cost{0};
 };
+
+class ItemsList {
+private:
+    int amount;
+public:
+    ItemsList();
+    int getAmount();
+    void addItem( ItemsStats* newItem);
+};
+
+class Game;
 
 
 class Object {
@@ -51,7 +63,12 @@ class Character: public Object {
 private:
     Stats* characterStats = new Stats;
 public:
-    Character(std::string name, RGB rgb, Size hw, Coordinates coords);
+    //Character(std::string name, RGB rgb, Size hw, Coordinates coords);
+};
+
+class Player: public Character {
+public:
+    ItemsList* itemsListAndStuff = new ItemsList;
 };
 
 class Wall: public Object {
@@ -61,6 +78,12 @@ public:
     Wall(int damage);
 };
 
-
+class Game {
+    int numPlayers;
+    std::string gameName;
+public:
+    Player* mainPlayer = new Player;
+    Game(std::string name = "Game 1");
+};
 
 
