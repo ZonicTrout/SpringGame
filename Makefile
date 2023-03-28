@@ -1,2 +1,2 @@
 all:
-	g++ *.cpp -o spring
+	g++ spring.cpp springDef.cpp -o spring

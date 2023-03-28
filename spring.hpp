@@ -39,14 +39,16 @@ struct ItemsLinked {
     ItemsLinked* next;
 };
 
-class ItemsList {
+class Inventory {
 public:
     int amount;
     ItemsLinked* headPtr;
     ItemsLinked* tailPtr;
-    ItemsList();
+    Inventory();
     int getAmount();
     void addItem( ItemsStats* newItem);
+    ItemsLinked* indexValue( int index );
+    //void removeItem();
 };
 
 class Game;
@@ -72,8 +74,18 @@ public:
 };
 
 class Player: public Character {
+private:
+    ItemsStats Stick{
+        .name="Wooden Stick",
+        .description="Basic Weapon, legend says it came from a tree",
+        .attack=2,
+        .defence=0,
+        .cost=0
+    };
 public:
-    ItemsList* itemsListAndStuff = new ItemsList;
+    Inventory* playerInventory = new Inventory();
+    Player();
+    ~Player();
 };
 
 class Wall: public Object {
